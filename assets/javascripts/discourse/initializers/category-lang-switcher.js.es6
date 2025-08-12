@@ -14,16 +14,13 @@ export default {
         }
       });
 
-      // HREFLANG вставляем в head (работает на Ember app, каждый переход)
       api.decorateCookedElement($elem => {
         const category = api.getCurrentCategory && api.getCurrentCategory();
         if (category && category.custom_fields) {
           const hreflang = category.custom_fields.hreflang_code;
           if (hreflang) {
-            // удалим существующий наш тег, если есть
             let existing = document.head.querySelector('link[data-discourse-locale]');
             if (existing) { existing.remove(); }
-            // вставим свежий
             const link = document.createElement("link");
             link.setAttribute("rel", "alternate");
             link.setAttribute("hreflang", hreflang);

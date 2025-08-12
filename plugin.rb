@@ -1,6 +1,6 @@
 # name: discourse-category-locale
 # about: Locales and hreflang fields for chosen categories
-# version: 0.1
+# version: 0.2
 # authors: IDW
 # url: https://github.com/zamozhnii/discourse-category-locale.git
 
