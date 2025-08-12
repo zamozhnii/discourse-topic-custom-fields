@@ -1,0 +1,3 @@
+plugins:
+  category_locale_enabled:
+    default: true
