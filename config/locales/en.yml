@@ -1,6 +1,0 @@
-en:
-  plugins:
-    discourse-category-locale:
-      category_locale_enabled:
-        description: Enable extended locale/category options
-        default: true
