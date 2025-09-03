@@ -7,10 +7,22 @@
 enabled_site_setting :enable_discourse_category_locale
 
 after_initialize do
-  add_to_serializer(:category, :local_lang, false) do
-    object.custom_fields && object.custom_fields["local_lang"]
+  Discourse::Application.routes.append do
+    put "/topic/:topic_id/custom_fields" => "topic_custom_fields#update"
   end
-  add_to_serializer(:category, :hreflang_code, false) do
-    object.custom_fields && object.custom_fields["hreflang_code"]
+
+  class ::TopicCustomFieldsController < ::ApplicationController
+    requires_plugin 'discourse-category-locale'
+    before_action :ensure_logged_in
+
+    def update
+      topic = Topic.find(params[:topic_id])
+      guardian.ensure_can_edit!(topic)
+
+      topic.custom_fields.merge!(params[:topic_custom_fields].permit!.to_h)
+      topic.save!
+
+      render json: success_json
+    end
   end
 end
