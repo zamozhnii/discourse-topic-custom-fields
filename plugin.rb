@@ -1,6 +1,6 @@
 # name: discourse-topic-custom-fields
 # about: Locales and hreflang fields for chosen categories
-# version: 0.5
+# version: 0.6
 # authors: IDW
 # url: https://github.com/zamozhnii/discourse-topic-custom-fields.git
 
