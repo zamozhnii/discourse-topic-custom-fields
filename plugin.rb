@@ -4,7 +4,7 @@
 # authors: IDW
 # url: https://github.com/zamozhnii/discourse-topic-custom-fields.git
 
-enabled_site_setting :enable_discourse_category_locale
+enabled_site_setting :enable_discourse_topic_custom_fields
 
 after_initialize do
   Discourse::Application.routes.append do
