@@ -1,18 +1,18 @@
-# name: discourse-category-locale
+# name: discourse-topic-custom-fields
 # about: Locales and hreflang fields for chosen categories
 # version: 0.5
 # authors: IDW
-# url: https://github.com/zamozhnii/discourse-category-locale.git
+# url: https://github.com/zamozhnii/discourse-topic-custom-fields.git
 
 enabled_site_setting :enable_discourse_category_locale
 
 after_initialize do
   Discourse::Application.routes.append do
-    put "/topic/:topic_id/custom_fields" => "topic_custom_fields#update"
+    put "/alts-x-def-topic/:topic_id/custom_fields" => "topic_custom_fields#update"
   end
 
   class ::TopicCustomFieldsController < ::ApplicationController
-    requires_plugin 'discourse-category-locale'
+    requires_plugin 'discourse-topic-custom-fields'
     before_action :ensure_logged_in
 
     def update

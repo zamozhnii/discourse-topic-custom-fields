@@ -1,3 +1,3 @@
 plugins:
-  enable_discourse_category_locale:
+  enable_discourse_topic_custom_fields:
     default: true
