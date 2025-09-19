@@ -1,6 +1,6 @@
 # name: discourse-topic-custom-fields
 # about: Locales and hreflang fields for chosen categories
-# version: 0.6
+# version: 0.7
 # authors: IDW
 # url: https://github.com/zamozhnii/discourse-topic-custom-fields.git
 
@@ -19,8 +19,17 @@ after_initialize do
       topic = Topic.find(params[:topic_id])
       guardian.ensure_can_edit!(topic)
 
-      topic.custom_fields.merge!(params[:topic_custom_fields].permit!.to_h)
-      topic.save!
+      new_fields = params[:topic_custom_fields].permit!.to_h
+
+      new_fields.each do |key, value|
+        Array(value).each do |v|
+          TopicCustomField.create!(
+            topic_id: topic.id,
+            name: key,
+            value: v
+          )
+        end
+      end
 
       render json: success_json
     end
